@@ -2,16 +2,21 @@
 const projects = [
   {
     title: 'Credit Card Fraud Detection ML System',
+    category: 'Machine Learning',
+    color: '#3b4fd8',
+    featured: true,
     description:
       'A supervised machine learning system that flags fraudulent card transactions in a heavily imbalanced Kaggle dataset. Compares Logistic Regression, Random Forest, XGBoost and a neural network on ROC-AUC, precision, recall and F1, deployed as an interactive Streamlit app with a monitoring dashboard.',
     tags: ['Python', 'pandas', 'scikit-learn', 'XGBoost', 'Streamlit'],
     links: [
-      { label: 'Code', href: 'https://github.com/emmyjonny/credit-card-fraud-detection-ml-system' },
       { label: 'Live demo', href: 'https://credit-card-fraud-detection-klcjftpzqjodnnkuvnrynv.streamlit.app' },
+      { label: 'Code', href: 'https://github.com/emmyjonny/credit-card-fraud-detection-ml-system' },
     ],
   },
   {
     title: 'Smart Contract Digital Asset Registry',
+    category: 'Blockchain',
+    color: '#8b5cf6',
     description:
       "A Solidity smart contract for registering digital assets, storing their metadata and transferring ownership on Ethereum. Uses OpenZeppelin's Ownable and ReentrancyGuard, checks ownership before transfers, and logs events so every change is visible.",
     tags: ['Solidity', 'Hardhat', 'OpenZeppelin'],
@@ -19,6 +24,8 @@ const projects = [
   },
   {
     title: 'U.S. Gun Violence Dashboard (2014–2022)',
+    category: 'Data Visualization',
+    color: '#0ea5a0',
     description:
       'An interactive Tableau dashboard combining Kaggle incident data with U.S. Census population figures. Per-capita rates allow fair state comparisons, shown through a choropleth map, state rankings, trend lines and an injuries-vs-fatalities breakdown. Includes a written report.',
     tags: ['Tableau', 'Data analysis'],
@@ -26,6 +33,8 @@ const projects = [
   },
   {
     title: 'StudyLoop',
+    category: 'AI Application',
+    color: '#e0782f',
     description:
       'An early prototype of an AI exam-practice platform. A Node.js/Express backend that calls the Claude API to generate multiple-choice practice questions, with answers and explanations, for any subject, topic and difficulty.',
     tags: ['Node.js', 'Express', 'Claude API'],
@@ -33,6 +42,8 @@ const projects = [
   },
   {
     title: 'Intro Solidity Smart Contract',
+    category: 'Blockchain',
+    color: '#8b5cf6',
     description:
       'A beginner contract built in Remix while learning smart contract basics. It stores an input value but caps it at 100.',
     tags: ['Solidity', 'Remix'],
@@ -41,13 +52,17 @@ const projects = [
 ];
 ---
 
-<section id="projects">
+<section id="projects" class="projects">
   <div class="container">
-    <h2 class="section-title">Projects</h2>
+    <div class="section-head">
+      <p class="eyebrow">02 · Projects</p>
+      <h2>Selected work.</h2>
+    </div>
     <div class="grid">
       {
         projects.map((project) => (
-          <article class="card">
+          <article class:list={['card', { featured: project.featured }]} style={`--card-color: ${project.color}`}>
+            <span class="category">{project.category}</span>
             <h3>{project.title}</h3>
             <p>{project.description}</p>
             <ul class="tags">
@@ -58,7 +73,7 @@ const projects = [
             <div class="links">
               {project.links.map((link) => (
                 <a href={link.href} target="_blank" rel="noopener noreferrer">
-                  {link.label} &rarr;
+                  {link.label} <span aria-hidden="true">&#8599;</span>
                 </a>
               ))}
             </div>
@@ -70,52 +85,115 @@ const projects = [
 </section>
 
 <style>
+  .projects {
+    background: var(--surface-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     gap: 1.25rem;
   }
 
   .card {
+    position: relative;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.75rem;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--card-color);
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .featured {
+    grid-column: 1 / -1;
+    background:
+      radial-gradient(28rem 16rem at 100% 0%, color-mix(in srgb, var(--card-color) 12%, transparent), transparent 70%),
+      var(--surface);
+  }
+
+  .featured h3 {
+    font-size: clamp(1.4rem, 3vw, 1.75rem);
+  }
+
+  .featured p {
+    max-width: 46rem;
+  }
+
+  .category {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--card-color);
+    background: color-mix(in srgb, var(--card-color) 12%, transparent);
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
   }
 
   .card p {
     color: var(--muted);
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     flex: 1;
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .links a {
-    font-weight: 600;
-    text-decoration: none;
   }
 
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
     list-style: none;
     padding: 0;
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
   }
 
   .tags li {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 500;
     padding: 0.2rem 0.6rem;
     border-radius: 999px;
-    border: 1px solid var(--border);
+    background: var(--surface-2);
     color: var(--muted);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .links a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
   }
 </style>

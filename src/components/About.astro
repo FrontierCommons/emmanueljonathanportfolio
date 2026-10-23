@@ -23,63 +23,121 @@ const techStack = [
 
 <section id="about">
   <div class="container">
-    <h1>Hi, I'm Emmanuel Jonathan.</h1>
-    <p class="lead">
-      AI &amp; Data Governance · Risk, Compliance &amp; AML Investigations · Machine
-      Learning &amp; Analytics
-    </p>
-    <p>
-      I trained in law and work in risk and compliance, and I'm moving into AI governance,
-      data governance and risk-aware machine learning. I've worked across international law,
-      regulatory compliance, financial crime investigations and governance of large
-      public-sector programs.
-    </p>
-    <p>
-      As an AML investigator I worked sanctions and suspicious-transaction alerts, did
-      enhanced due diligence and OSINT research, and wrote audit-ready case narratives at
-      high volume. I want to build AI systems that are accountable and follow policy, and I
-      bring legal reasoning and system-level risk analysis to that work.
-    </p>
+    <div class="section-head">
+      <p class="eyebrow">01 · About</p>
+      <h2>Legal reasoning meets machine learning.</h2>
+    </div>
 
-    <div class="lists">
-      <div>
-        <h3>Focus areas</h3>
-        <ul class="pills">
-          {focusAreas.map((area) => <li>{area}</li>)}
-        </ul>
+    <div class="layout">
+      <div class="bio">
+        <p>
+          I trained in law and work in risk and compliance, and I'm moving into AI governance,
+          data governance and risk-aware machine learning. I've worked across international
+          law, regulatory compliance, financial crime investigations and governance of large
+          public-sector programs.
+        </p>
+        <p>
+          As an AML investigator I worked sanctions and suspicious-transaction alerts, did
+          enhanced due diligence and OSINT research, and wrote audit-ready case narratives at
+          high volume.
+        </p>
+        <blockquote>
+          I want to build AI systems that are accountable and follow policy, bringing legal
+          reasoning and system-level risk analysis to that work.
+        </blockquote>
       </div>
-      <div>
-        <h3>Tech stack</h3>
-        <ul class="pills">
-          {techStack.map((tech) => <li>{tech}</li>)}
-        </ul>
+
+      <div class="panels">
+        <div class="panel">
+          <h3>Focus areas</h3>
+          <ul class="focus">
+            {focusAreas.map((area) => <li>{area}</li>)}
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Tech stack</h3>
+          <ul class="pills">
+            {techStack.map((tech) => <li>{tech}</li>)}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  #about {
-    padding-top: 5rem;
+  .layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 3rem;
+    align-items: start;
   }
 
-  h1 {
-    font-size: clamp(2rem, 6vw, 3rem);
-  }
-
-  .lead {
-    font-size: 1.15rem;
+  .bio p {
+    margin: 0 0 1.25rem;
     color: var(--muted);
   }
 
-  .lists {
-    display: grid;
-    gap: 1.5rem;
-    margin-top: 2rem;
+  blockquote {
+    margin: 1.75rem 0 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 12px 12px 0;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.5;
   }
 
-  h3 {
-    font-size: 1rem;
+  .panels {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .panel h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .focus {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .focus li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+  }
+
+  .focus li::before {
+    content: '✓';
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
   }
 
   .pills {
@@ -93,9 +151,17 @@ const techStack = [
 
   .pills li {
     font-size: 0.85rem;
-    padding: 0.25rem 0.75rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
     border-radius: 999px;
-    background: var(--surface);
+    background: var(--surface-2);
     border: 1px solid var(--border);
+  }
+
+  @media (max-width: 820px) {
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 </style>
