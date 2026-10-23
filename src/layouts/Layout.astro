@@ -1,0 +1,171 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Personal portfolio' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav">
+        <a href="#top" class="brand">Jonathan</a>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main id="top">
+      <slot />
+    </main>
+    <footer class="container site-footer">
+      <p>&copy; {new Date().getFullYear()} Jonathan. Built with Astro.</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #ffffff;
+    --surface: #f5f6f8;
+    --text: #1a1d23;
+    --muted: #5b6270;
+    --accent: #2f5bd3;
+    --border: #e3e6eb;
+    --radius: 12px;
+    color-scheme: light dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111318;
+      --surface: #1a1d24;
+      --text: #e8eaee;
+      --muted: #9aa1ad;
+      --accent: #7b9cff;
+      --border: #2a2e37;
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  a {
+    color: var(--accent);
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  section:first-of-type {
+    border-top: none;
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .nav a:hover {
+    color: var(--accent);
+  }
+
+  .brand {
+    font-weight: 700;
+  }
+
+  .site-footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 480px) {
+    .nav ul {
+      gap: 0.9rem;
+    }
+    section {
+      padding: 3rem 0;
+    }
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+const links = [
+  { label: 'Email', href: 'mailto:you@example.com', text: 'you@example.com' },
+  { label: 'GitHub', href: 'https://github.com/your-username', text: 'github.com/your-username' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/your-profile', text: 'linkedin.com/in/your-profile' },
+];
+---
+
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p>I'm always happy to chat about new projects or opportunities. Reach out anytime.</p>
+    <ul class="links">
+      {
+        links.map((link) => (
+          <li>
+            <span>{link.label}</span>
+            <a href={link.href}>{link.text}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .links li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+
+  .links span {
+    min-width: 5.5rem;
+    color: var(--muted);
+  }
+
+  .links a {
+    overflow-wrap: anywhere;
+  }
+</style>
