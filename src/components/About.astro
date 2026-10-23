@@ -1,14 +1,60 @@
+---
+const focusAreas = [
+  'AI governance & responsible AI',
+  'Data governance & risk controls',
+  'Financial crime & fraud detection',
+  'Model risk management',
+  'Regulation-aware technology design',
+];
+
+const techStack = [
+  'Python',
+  'SQL',
+  'scikit-learn',
+  'pandas',
+  'Streamlit',
+  'Solidity',
+  'Hardhat',
+  'Tableau',
+  'Power BI',
+  'Node.js',
+];
+---
+
 <section id="about">
   <div class="container">
-    <h1>Hi, I'm Jonathan.</h1>
+    <h1>Hi, I'm Emmanuel Jonathan.</h1>
     <p class="lead">
-      I build thoughtful, reliable software and enjoy turning ideas into things people
-      actually use.
+      AI &amp; Data Governance · Risk, Compliance &amp; AML Investigations · Machine
+      Learning &amp; Analytics
     </p>
     <p>
-      This is a placeholder bio. Replace it with a few sentences about who you are, what
-      you work on, and what you're interested in learning next.
+      I trained in law and work in risk and compliance, and I'm moving into AI governance,
+      data governance and risk-aware machine learning. I've worked across international law,
+      regulatory compliance, financial crime investigations and governance of large
+      public-sector programs.
     </p>
+    <p>
+      As an AML investigator I worked sanctions and suspicious-transaction alerts, did
+      enhanced due diligence and OSINT research, and wrote audit-ready case narratives at
+      high volume. I want to build AI systems that are accountable and follow policy, and I
+      bring legal reasoning and system-level risk analysis to that work.
+    </p>
+
+    <div class="lists">
+      <div>
+        <h3>Focus areas</h3>
+        <ul class="pills">
+          {focusAreas.map((area) => <li>{area}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>Tech stack</h3>
+        <ul class="pills">
+          {techStack.map((tech) => <li>{tech}</li>)}
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -22,7 +68,34 @@
   }
 
   .lead {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--muted);
+  }
+
+  .lists {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pills li {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
   }
 </style>

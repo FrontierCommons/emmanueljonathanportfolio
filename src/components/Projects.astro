@@ -1,18 +1,42 @@
 ---
 const projects = [
   {
-    title: 'Project One',
+    title: 'Credit Card Fraud Detection ML System',
     description:
-      'A short description of what this project does, the problem it solves, and what you learned building it.',
-    tags: ['Astro', 'TypeScript'],
-    link: '#',
+      'A supervised machine learning system that flags fraudulent card transactions in a heavily imbalanced Kaggle dataset. Compares Logistic Regression, Random Forest, XGBoost and a neural network on ROC-AUC, precision, recall and F1, deployed as an interactive Streamlit app with a monitoring dashboard.',
+    tags: ['Python', 'pandas', 'scikit-learn', 'XGBoost', 'Streamlit'],
+    links: [
+      { label: 'Code', href: 'https://github.com/emmyjonny/credit-card-fraud-detection-ml-system' },
+      { label: 'Live demo', href: 'https://credit-card-fraud-detection-klcjftpzqjodnnkuvnrynv.streamlit.app' },
+    ],
   },
   {
-    title: 'Project Two',
+    title: 'Smart Contract Digital Asset Registry',
     description:
-      'Another placeholder project. Swap in a real summary, the tools you used, and a link to the code or live demo.',
-    tags: ['Node.js', 'CSS'],
-    link: '#',
+      "A Solidity smart contract for registering digital assets, storing their metadata and transferring ownership on Ethereum. Uses OpenZeppelin's Ownable and ReentrancyGuard, checks ownership before transfers, and logs events so every change is visible.",
+    tags: ['Solidity', 'Hardhat', 'OpenZeppelin'],
+    links: [{ label: 'Code', href: 'https://github.com/emmyjonny/Smart-Contract-Digital-Asset-Registry' }],
+  },
+  {
+    title: 'U.S. Gun Violence Dashboard (2014–2022)',
+    description:
+      'An interactive Tableau dashboard combining Kaggle incident data with U.S. Census population figures. Per-capita rates allow fair state comparisons, shown through a choropleth map, state rankings, trend lines and an injuries-vs-fatalities breakdown. Includes a written report.',
+    tags: ['Tableau', 'Data analysis'],
+    links: [{ label: 'Code', href: 'https://github.com/emmyjonny/us-gun-violence-dashboard' }],
+  },
+  {
+    title: 'StudyLoop',
+    description:
+      'An early prototype of an AI exam-practice platform. A Node.js/Express backend that calls the Claude API to generate multiple-choice practice questions, with answers and explanations, for any subject, topic and difficulty.',
+    tags: ['Node.js', 'Express', 'Claude API'],
+    links: [{ label: 'Code', href: 'https://github.com/emmyjonny/StudyLoop' }],
+  },
+  {
+    title: 'Intro Solidity Smart Contract',
+    description:
+      'A beginner contract built in Remix while learning smart contract basics. It stores an input value but caps it at 100.',
+    tags: ['Solidity', 'Remix'],
+    links: [{ label: 'Code', href: 'https://github.com/emmyjonny/Smart-Contract---Emmanuel-Jonathan' }],
   },
 ];
 ---
@@ -31,7 +55,13 @@ const projects = [
                 <li>{tag}</li>
               ))}
             </ul>
-            <a href={project.link}>View project &rarr;</a>
+            <div class="links">
+              {project.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label} &rarr;
+                </a>
+              ))}
+            </div>
           </article>
         ))
       }
@@ -61,7 +91,13 @@ const projects = [
     flex: 1;
   }
 
-  .card a {
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .links a {
     font-weight: 600;
     text-decoration: none;
   }
